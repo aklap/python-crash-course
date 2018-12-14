@@ -1,0 +1,5 @@
+In Python you can save data in a data structure called a list.
+In Python you can save keys and values in a data structure called a dictionary.
+In Python you can perform an action several times with a while loop.
+In Python you can loop over elements in a list by their index.
+In Python you can conflate ranges and lists in a list comprehension.
