@@ -111,4 +111,22 @@
 #     # print('File not found!')
 #     pass
 
-# 10-10
+# 10-11, 10-12
+import json
+
+filename = 'favorite_num.txt'
+
+try:
+    with open(filename) as f:
+
+        favorite_num = json.load(f)
+except FileNotFoundError:
+    favorite_num = input('What\'s your favorite number?\n')
+
+    with open(filename, 'w') as f:
+        json.dump(favorite_num, f)
+else:
+    print('I know your favorite number! It\'s ' + favorite_num + '.')
+
+
+
