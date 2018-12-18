@@ -111,6 +111,18 @@
 #     # print('File not found!')
 #     pass
 
+# 10-10
+import os
+
+books = os.listdir('books')
+
+for book in books:
+    with open('books/' + book) as f:
+        words = f.read()
+        count = words.lower().count('the')
+
+    print(book + ' has ' + str(count) + ' occurences of the word "the".\n')
+
 # 10-11, 10-12
 import json
 
@@ -127,6 +139,3 @@ except FileNotFoundError:
         json.dump(favorite_num, f)
 else:
     print('I know your favorite number! It\'s ' + favorite_num + '.')
-
-
-
