@@ -31,6 +31,15 @@ def run_game():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT:
+                    rocket.rect.centerx += 1
+                elif event.key == pygame.K_LEFT:
+                    rocket.rect.centerx -= 1
+                if event.key == pygame.K_UP:
+                    rocket.rect.bottom -= 1
+                if event.key == pygame.K_DOWN:
+                    rocket.rect.bottom += 1
 
         screen.fill(settings.bg_color)
         rocket.blitme()
