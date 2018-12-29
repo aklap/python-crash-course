@@ -10,6 +10,7 @@ def run_game():
     bg_color = (230, 230, 230)
     screen.fill(bg_color)
     font = pygame.font.SysFont('Arial', 65, True)
+    screen_rect = screen.get_rect()
 
     while True:
         for event in pygame.event.get():
@@ -21,7 +22,7 @@ def run_game():
                 text_surface = font.render(key_name, True, (0, 0, 0), bg_color)
 
                 screen.fill(bg_color)  # Fill the window with a bg color
-                screen.blit(text_surface, (0, 0))  # Draw text on window (text surface on window surface)
+                screen.blit(text_surface, (screen_rect.centerx, screen_rect.centery))  # Draw text on window (text surface on window surface)
                 pygame.display.flip()  # Draw the latest window
 
 run_game()
