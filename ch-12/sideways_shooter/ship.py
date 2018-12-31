@@ -2,8 +2,8 @@ import pygame
 
 """Base ship Class"""
 class Ship():
-    """Create a base ship class."""
     def __init__(self, settings, screen):
+        """Initialize an instance of Ship."""
         self.screen = screen
         self.ai_settings = settings
         self.image = pygame.image.load('images/ship.bmp')
@@ -19,7 +19,6 @@ class Ship():
         # Movement flags
         self.moving_up = False
         self.moving_down = False
-
 
     def update(self):
         """Prevent ship from moving out of window"""

@@ -1,29 +1,33 @@
 import sys
 import pygame
+from pygame.sprite import Group
 from settings import Settings
 from ship import Ship
 import game_functions as gf
-
 
 def run_game():
     pygame.init()  # Initialize game
     # Settings
     ai_settings = Settings()
-    screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))  # Create window
+    # Create window
+    screen = pygame.display.set_mode((ai_settings.screen_width, ai_settings.screen_height))
+    # Create ship
     ship = Ship(ai_settings, screen)
+    # Needs to be imported from the sprite module of pygame
+    bullets = Group()
 
-    # Check events
+    # Event loop
     while True:
         # Check events
-        gf.check_events(ai_settings, screen, ship)
+        gf.check_events(ai_settings, screen, ship, bullets)
         # Fill background color
         screen.fill(ai_settings.bg_color)
         # Update ship
         ship.update()
+        # Update bullets
+        gf.update_bullets(bullets, ai_settings)
         # Draw objects in window
-        screen.blit(ship.image, ship.rect)
-        # Re-render the lastest version of the window
-        pygame.display.flip() # Update window
+        gf.update_screen(ai_settings, screen, ship, bullets)
 
 # Run game loop
 run_game()
