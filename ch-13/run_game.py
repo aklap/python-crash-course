@@ -1,6 +1,7 @@
 import sys
 import pygame
 from pygame.sprite import Sprite, Group
+from random import randint
 
 
 class Star(Sprite):
@@ -17,7 +18,6 @@ class Star(Sprite):
         self.rect.x = self.rect.width
         self.rect.y = self.rect.height
         self.x = float(self.rect.x)
-
 
     def blitme(self):
         """Draw star at current position."""
@@ -48,9 +48,9 @@ def run_game():
             # Create new instance of Star
             star = Star(screen)
             star_width = star.rect.width
-            star.x = star_width + 2 * star_width * star_num
+            star.x = star_width + (randint(-10, 10) * star_width * star_num)
             star.rect.x = star.x
-            star.rect.y = star.rect.height + 2 * star.rect.height * row
+            star.rect.y = star.rect.height + (2 * star.rect.height * row)
             # Add new star to group
             stars.add(star)
 
