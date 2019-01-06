@@ -1,5 +1,6 @@
 import pygame
 from drop import Drop
+from random import randint
 
 def update_screen(screen, drops):
     """Redraw screen with updated raindrops."""
@@ -30,7 +31,7 @@ def create_raindrops(screen, number_rows, number_drops, drops):
 def rain_drops(screen, drops):
     # Update raindrops position.
         for drop in drops.sprites():
-            drop.rect.y += 5
+            drop.rect.y += randint(1, 10)
             # If drop is below bottom of screen, remove it and don't update it.
             if drop.rect.bottom >= screen.get_rect().height:
                 drop.rect.y = 0
