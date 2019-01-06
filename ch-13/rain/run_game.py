@@ -45,7 +45,7 @@ def run_game():
     # How many stars can fit width-wise on screen
     number_drops = int(available_space_x / (2 * drop_width))
     # Available space for rows of stars
-    available_space_y = (800 - (2 * drop_height))
+    available_space_y = (800 - drop_height)
     number_rows = int(available_space_y / (2 * drop_height))
 
     # Create 'drop fleet': Generate total number of raindrops and store in Group()
@@ -72,8 +72,8 @@ def run_game():
             drop.rect.y += 5
 
             # If drop is below bottom of screen, remove it and don't update it.
-            if drop.rect.bottom > screen.get_rect().height:
-                drops.remove(drop)
+            if drop.rect.bottom >= screen.get_rect().height:
+                drop.rect.y = 0
 
         # Update screen
         screen.fill((0, 0, 0))
