@@ -18,6 +18,20 @@ class Person(Sprite):
         self.rect.centerx = self.screen_rect.centerx
         self.rect.bottom = self.screen_rect.bottom
         self.center = float(self.rect.centerx)
+        # Movement
+        self.moving_right = False
+        self.moving_left = False
+        self.person_speed_factor = 5
+
+    def update(self):
+        """Move Person left and right across screen."""
+        if self.moving_right and self.rect.right < self.screen_rect.right:
+            self.center += self.person_speed_factor
+
+        if self.moving_left and self.rect.left > self.screen_rect.left:
+            self.center -= self.person_speed_factor
+
+        self.rect.centerx = self.center
 
     def blitme(self, screen):
         """Draw the person at current location"""
@@ -86,20 +100,23 @@ def run_game():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     sys.exit()
-
+                elif event.key == pygame.K_RIGHT:
+                    # Move person to the right.
+                    catcher.moving_right = True
+                elif event.key == pygame.K_LEFT:
+                    # Move person to the left.
+                    catcher.moving_left = True
         # Update balls
         balls.update()
-
         # Update screen
-
         for ball in balls.sprites():
-            print(ball.x, ball.y)
             # Remove a ball if it falls past the bottom of screen
             if ball.rect.bottom >= screen.get_rect().height:
                 ball.y = 0  # send back to top of screen
                 # NOTE: Why does it have to be `rect.x` instead of ball.x?
                 ball.rect.x = randint(0, 1200)  # change position along top of screen
 
+        catcher.update()
         screen.fill((230, 230, 230))
         ball.draw_ball()
         catcher.blitme(screen)
