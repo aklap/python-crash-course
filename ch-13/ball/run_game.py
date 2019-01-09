@@ -1,69 +1,5 @@
 import pygame
-import sys
-from pygame.sprite import Sprite, Group
-from random import *
-
-
-class Person(Sprite):
-    """A class to represent a person to catch a ball."""
-    def __init__(self, screen):
-        """Initialize instance of Person."""
-        super(Person, self).__init__()
-        self.screen = screen
-        # Load image and set rect attr.
-        self.image = pygame.image.load('images/person-pointing.png')
-        self.rect = self.image.get_rect()
-        self.screen_rect = screen.get_rect()
-        # Start each person near bottom middle of window
-        self.rect.centerx = self.screen_rect.centerx
-        self.rect.bottom = self.screen_rect.bottom
-        self.center = float(self.rect.centerx)
-        # Movement
-        self.moving_right = False
-        self.moving_left = False
-        self.person_speed_factor = 5
-
-    def update(self):
-        """Move Person left and right across screen."""
-        if self.moving_right and self.rect.right < self.screen_rect.right:
-            self.center += self.person_speed_factor
-
-        if self.moving_left and self.rect.left > self.screen_rect.left:
-            self.center -= self.person_speed_factor
-
-        self.rect.centerx = self.center
-
-    def blitme(self, screen):
-        """Draw the person at current location"""
-        self.screen.blit(self.image, self.rect)
-
-
-class Ball(Sprite):
-    """A class to manage balls being thrown."""
-
-    def __init__(self, ball_height, ball_width, screen):
-        """Create a ball object."""
-        super(Ball, self).__init__()
-        self.screen = screen
-        # Create a rect for a ball
-        self.rect = pygame.Rect(0, 0, ball_height, ball_width)
-        self.screen_rect = screen.get_rect()
-        self.rect.centerx = self.screen_rect.top
-        self.rect.top = self.screen_rect.top
-        self.y = float(self.rect.y)
-        self.color = (0, 0, 0)
-        self.speed = 1
-
-
-    def update(self):
-        """Move bullet down the screen."""
-        self.y += 5
-        self.rect.y = self.y
-
-
-    def draw_ball(self):
-        """Draw the bullet to the screen."""
-        pygame.draw.rect(self.screen, self.color, self.rect)
+import game_functions as gf
 
 
 def run_game():
@@ -74,52 +10,20 @@ def run_game():
     screen = pygame.display.set_mode((1200, 800))
     # Create caption
     pygame.display.set_caption('Catch Game')
-    # Create balls Group to collect all balls
-    balls = Group()
-    # Generate a ball and add to Group
-    ball = Ball(10, 10, screen)
-    ball_width = ball.rect.width
-    ball_height = ball.rect.height
-
-    # Available width for balls to drop
-    available_space_x = 1200 - (ball_height * 2)
-    # How many balls can fit width-wise on screen
-    # number_balls = int(available_space_x / (2 * ball_width))
-    # Position ball along top of screen and add to Group
-    ball.x = ball_width + (2 * ball_width * randint(1, 10))
-    ball.rect.x = ball.x
-    ball.rect.y = ball.rect.height + (2 * ball.rect.height)
-    balls.add(ball)
-
+    # Generate a ball
+    ball = gf.create_ball(screen)
     # Create a person
-    catcher = Person(screen)
+    person = gf.create_person(screen)
 
     # Run loop
     while True:
         for event in pygame.event.get():
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_q:
-                    sys.exit()
-                elif event.key == pygame.K_RIGHT:
-                    # Move person to the right.
-                    catcher.moving_right = True
-                elif event.key == pygame.K_LEFT:
-                    # Move person to the left.
-                    catcher.moving_left = True
-        # Update balls
-        balls.update()
-        # Update screen
-        for ball in balls.sprites():
-            # Remove a ball if it falls past the bottom of screen
-            if ball.rect.bottom >= screen.get_rect().height:
-                ball.y = 0  # send back to top of screen
-                # NOTE: Why does it have to be `rect.x` instead of ball.x?
-                ball.rect.x = randint(0, 1200)  # change position along top of screen
+            gf.check_events(event, person)
+        # Update sprite positions
+        gf.update_person(person)
+        gf.update_ball(ball, person)
+        # Re-render screen
+        gf.update_screen(screen, ball, person)
 
-        catcher.update()
-        screen.fill((230, 230, 230))
-        ball.draw_ball()
-        catcher.blitme(screen)
-        pygame.display.flip()
-
+# Run our game loop
 run_game()
