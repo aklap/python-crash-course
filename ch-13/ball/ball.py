@@ -20,9 +20,9 @@ class Ball(Sprite):
 
 
     def update(self):
-            """Move bullet down the screen."""
-            self.y += 2
-            self.rect.y = self.y
+        """Move bullet down the screen."""
+        self.y += 2
+        self.rect.y = self.y
 
 
     def draw_ball(self):
