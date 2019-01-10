@@ -2,6 +2,7 @@ import pygame
 from pygame.sprite import Sprite
 from random import randint
 
+
 class Ball(Sprite):
     """A class to manage balls being thrown."""
 
@@ -18,17 +19,14 @@ class Ball(Sprite):
         self.color = (0, 0, 0)
         self.speed = 10
 
-
     def update(self):
         """Move bullet down the screen."""
         self.y += 1 * self.speed
         self.rect.y = self.y
 
-
     def draw_ball(self):
         """Draw the bullet to the screen."""
         pygame.draw.rect(self.screen, self.color, self.rect)
-
 
     def to_top(self):
         """Send ball back to the top of the window."""
