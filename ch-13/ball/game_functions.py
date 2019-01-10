@@ -17,7 +17,7 @@ def update_screen(screen, ball, person):
     pygame.display.flip()
 
 
-def check_events(event, person):
+def check_events(person):
     """Check and handle events."""
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
