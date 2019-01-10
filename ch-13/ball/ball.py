@@ -16,12 +16,12 @@ class Ball(Sprite):
         self.rect.top = self.screen_rect.top
         self.y = float(self.rect.y)
         self.color = (0, 0, 0)
-        self.speed = 1
+        self.speed = 10
 
 
     def update(self):
         """Move bullet down the screen."""
-        self.y += 2
+        self.y += 1 * self.speed
         self.rect.y = self.y
 
 
