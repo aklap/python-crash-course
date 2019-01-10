@@ -71,10 +71,10 @@ def create_person(screen):
     return Person(screen)
 
 
-def update_ball(ball, person):
+def update_ball(ball, person, settings):
     """Update the position of the ball instance."""
     check_collision(ball, person)
-    check_bottom(ball)
+    check_bottom(ball, settings)
     ball.update()
 
 
@@ -90,7 +90,9 @@ def check_collision(ball, person):
         ball.rect.x = randint(0, 1200)  # change position along top of screen
 
 
-def check_bottom(ball):
+def check_bottom(ball, settings):
     """Check if ball is at bottom of window."""
     if ball.rect.bottom >= ball.screen_rect.height:
+        settings.ball_limit -= 1
         ball.to_top()
+
