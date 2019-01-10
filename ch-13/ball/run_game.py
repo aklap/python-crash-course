@@ -1,11 +1,13 @@
 import pygame
 import game_functions as gf
-
+from settings import Settings
 
 def run_game():
     """Run game."""
     # Initialize game
     pygame.init()
+    # Initialize settings
+    settings = Settings()
     # Create window
     screen = pygame.display.set_mode((1200, 800))
     # Create caption
@@ -17,11 +19,10 @@ def run_game():
 
     # Run loop
     while True:
-        for event in pygame.event.get():
-            gf.check_events(event, person)
+        gf.check_events(person)
         # Update sprite positions
         gf.update_person(person)
-        gf.update_ball(ball, person)
+        gf.update_ball(ball, person, settings)
         # Re-render screen
         gf.update_screen(screen, ball, person)
 
