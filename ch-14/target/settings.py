@@ -22,7 +22,7 @@ class Settings():
         # Speed of alien moving down
         # self.fleet_drop_speed = 5
         self.fleet_drop_speed = 50
-        self.target_speed_factor = 50
+        self.target_speed_factor = 5
         # Direction flag; 1 == right, -1 == left
         self.fleet_direction = 1
         # Limit the number of ships (lives)
