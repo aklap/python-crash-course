@@ -11,8 +11,9 @@ class Ship():
         self.image = pygame.transform.rotate(self.image, -90)
         self.rect = self.image.get_rect()  # NOTE: rect is the HTML rect attribute
         self.screen_rect = screen.get_rect()
-
+        self.y = float(self.screen_rect.centery)
         # Start each new ship at the bottom center of the screen.
+        self.rect.y = self.y
         self.rect.centery = self.screen_rect.centery
         self.rect.left = self.screen_rect.left
         self.center = float(self.rect.centery)
