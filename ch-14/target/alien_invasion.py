@@ -16,32 +16,29 @@ def run_game():
     # Add title to window.
     pygame.display.set_caption('Alien Invasion')
     # Draw button.
-    play_button = Button(ai_settings, screen, "Play", )
+    play_button = Button(ai_settings, screen, "Play")
     # Make a ship.
     ship = Ship(ai_settings, screen)
     # Make bullets.
     bullets = Group()
-    # Group aliens.
-    aliens = Group()
     # Make target
     target = Target(ai_settings, screen)
 
-    # Create the fleet of aliens.
-    gf.create_fleet(ai_settings, screen, ship, aliens)
+    # Create the fleet of .
+    # gf.create_fleet(ai_settings, screen, ship)
 
     # Initalize stats for a new game
     stats = GameStats(ai_settings)
 
     # Start the run loop for our game.
     while True:
-        gf.check_events(ai_settings, screen, ship, bullets, aliens, stats, play_button)
-        gf.update_screen(ai_settings, screen, ship, aliens, bullets, stats, play_button, target)
+        gf.check_events(ai_settings, screen, ship, bullets, stats, play_button)
         if stats.game_active:
             ship.update()
             target.update()
             gf.update_target(ai_settings, screen, target, bullets)
-            gf.update_bullets(ai_settings, screen, ship, aliens, bullets, target)
-            gf.update_aliens(ai_settings, stats, screen, ship, aliens, bullets)
+            gf.update_bullets(ai_settings, screen, ship, bullets, target, stats)
+        gf.update_screen(ai_settings, screen, ship, bullets, stats, play_button, target)
 
 # Run the game :)
 run_game()
