@@ -133,18 +133,18 @@ def update_screen(ai_settings, screen, ship, aliens, bullets, stats, play_button
     pygame.display.flip()
 
 
-def get_number_aliens_x(ai_settings, alien_width, ship_width):
+def get_number_aliens_x(ai_settings, alien_width):
     """Determine the number of aliens that fit in a row."""
-    available_space_x = (ai_settings.screen_width - ship_width) - (2 * alien_width)
+    available_space_x = ai_settings.screen_width - (2 * alien_width)
     number_aliens_x = int(available_space_x / (2 * alien_width))
     return number_aliens_x
 
 
-def create_alien(ai_settings, screen, aliens, alien_number, row_number, ship_width):
+def create_alien(ai_settings, screen, aliens, alien_number, row_number):
     """Create an alien and add to group."""
     alien = Alien(ai_settings, screen)
     alien_width = alien.rect.width
-    alien.x = alien_width + 2 * alien_width * alien_number + ship_width
+    alien.x = alien_width + 2 * alien_width * alien_number
     alien.rect.x = alien.x
     alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
     aliens.add(alien)
@@ -162,20 +162,20 @@ def create_fleet(ai_settings, screen, ship, aliens):
 
     # Create an alien and place it in the row.
     alien = Alien(ai_settings, screen)
-    number_aliens_x = get_number_aliens_x(ai_settings, alien.rect.width, ship.rect.width)
+    number_aliens_x = get_number_aliens_x(ai_settings, alien.rect.width)
     number_rows = get_number_rows(ai_settings, ship.rect.height, alien.rect.height)
     ship_width = ship.rect.width
 
     # Create the fleet of aliens
     for row_number in range(number_rows):
         for alien_number in range(number_aliens_x):
-            create_alien(ai_settings, screen, aliens, alien_number, row_number, ship_width)
+            create_alien(ai_settings, screen, aliens, alien_number, row_number)
 
 
 def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
     """Update the positions of all aliens in the fleet."""
     # Check if any aliens are beyond screen edges, if so change direction
-    check_fleet_edges(ai_settings, aliens)
+    check_fleet_edges(ai_settings, aliens, ship)
     check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets)
     aliens.update()
 
@@ -192,15 +192,16 @@ def check_aliens_bottom(ai_settings, stats, screen, ship, aliens, bullets):
     for alien in aliens.sprites():
         if alien.rect.bottom >= screen_rect.bottom:
             # Treat this the same as if ship got hit
-            ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
+            # ship_hit(ai_settings, stats, screen, ship, aliens, bullets)
+            reload_aliens_bullets(ai_settings, stats, screen, ship, aliens, bullets)
             break
 
 
-def check_fleet_edges(ai_settings, aliens):
+def check_fleet_edges(ai_settings, aliens, ship):
     """Respond appropriately if any aliens have reached an edge."""
     for alien in aliens.sprites():
         # If alien sprite is past the edge of the screen:
-        if alien.check_edges():
+        if alien.check_edges(ship):
             change_fleet_direction(ai_settings, aliens)
             break
 
