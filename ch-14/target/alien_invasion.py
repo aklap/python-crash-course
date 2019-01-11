@@ -37,7 +37,7 @@ def run_game():
             ship.update()
             target.update()
             gf.update_target(ai_settings, screen, target, bullets)
-            gf.update_bullets(ai_settings, screen, ship, bullets, target, stats)
+            gf.update_bullets(ai_settings, screen, ship, bullets, target, stats, play_button)
         gf.update_screen(ai_settings, screen, ship, bullets, stats, play_button, target)
 
 # Run the game :)

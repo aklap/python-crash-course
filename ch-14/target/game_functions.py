@@ -70,9 +70,9 @@ def fire_bullet(ai_settings, screen, ship, bullets):
         bullets.add(new_bullet)
 
 
-def update_bullets(ai_settings, screen, ship, bullets, target, stats):
+def update_bullets(ai_settings, screen, ship, bullets, target, stats, play_button):
     """Update position of bullets and get rid of old bullets."""
-    check_bullet_target_collisions(ai_settings, screen, target, bullets, stats, ship)
+    check_bullet_target_collisions(ai_settings, screen, target, bullets, stats, ship, play_button)
 
     bullets.update()  # Change position of existing bullets
 
@@ -87,25 +87,25 @@ def update_target(ai_settings, screen, target, bullets):
         target.change_direction()
 
 
-def check_bullet_target_collisions(ai_settings, screen, target, bullets, stats, ship):
+def check_bullet_target_collisions(ai_settings, screen, target, bullets, stats, ship, play_button):
 
     if pygame.sprite.spritecollideany(target, bullets):
         # Destroy existing bullets, create new fleet.
         bullets.empty()
-        target_hit(ai_settings, stats, screen, bullets, ship, target)
+        target_hit(ai_settings, stats, screen, bullets, ship, target, play_button)
         ship.center_ship()
 
-def target_hit(ai_settings, stats, screen, bullets, ship, target):
+def target_hit(ai_settings, stats, screen, bullets, ship, target, play_button):
     stats.targets_left -= 1
 
     if stats.targets_left < 1:
         stats.game_active = False
         pygame.mouse.set_visible(True)
-        print('game over')
+        play_button.prep_msg('GAME OVER!')
     else:
         bullets.empty()
         ship.center_ship()
-        sleep(0.5)
+        sleep(1)
 
 
 def update_screen(ai_settings, screen, ship, bullets, stats, play_button, target):
