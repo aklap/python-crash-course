@@ -8,25 +8,26 @@ class Ship():
         self.ai_settings = ai_settings
         # Load ship image and get its rect.
         self.image = pygame.image.load('images/ship.bmp')
+        self.image = pygame.transform.rotate(self.image, -90)
         self.rect = self.image.get_rect()  # NOTE: rect is the HTML rect attribute
         self.screen_rect = screen.get_rect()
 
         # Start each new ship at the bottom center of the screen.
-        self.rect.centerx = self.screen_rect.centerx
-        self.rect.bottom = self.screen_rect.bottom
-        self.center = float(self.rect.centerx)
-        self.moving_right = False  # movement flag
-        self.moving_left = False  # movement flag
+        self.rect.centery = self.screen_rect.centery
+        self.rect.left = self.screen_rect.left
+        self.center = float(self.rect.centery)
+        self.moving_up = False  # movement flag
+        self.moving_down = False  # movement flag
 
     def update(self):
         """Update ship position based on movement flag."""
-        if self.moving_right and self.rect.right < self.screen_rect.right:
-            self.center += self.ai_settings.ship_speed_factor
+        # if self.moving_down and self.rect.bottom <= self.screen_rect.height:
+        #     self.y += self.ai_settings.ship_speed_factor
 
-        if self.moving_left and self.rect.left > 0:
-            self.center -= self.ai_settings.ship_speed_factor
+        # if self.moving_up and self.rect.top >= 0:
+        #     self.center -= self.ai_settings.ship_speed_factor
 
-        self.rect.centerx = self.center
+        # self.rect.centerx = self.center
 
     def blitme(self):
         """Draw the ship at its current location."""
@@ -34,4 +35,4 @@ class Ship():
 
     def center_ship(self):
         """Center the ship on the screen."""
-        self.center = self.screen_rect.centerx
+        self.center = self.screen_rect.left

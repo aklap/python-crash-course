@@ -32,7 +32,7 @@ def start_game(ai_settings, screen, ship, aliens, bullets, stats):
 
     # Create new fleet and center ship
     create_fleet(ai_settings, screen, ship, aliens)
-    ship.center_ship()
+    # ship.center_ship()
 
 def check_play_button(ai_settings, screen, stats, play_button, ship, aliens, bullets, mouse_x, mouse_y):
     """Start a new game when the player clicks Play."""
@@ -50,12 +50,12 @@ def check_keydown_events(event, ai_settings, screen, ship, aliens, bullets, stat
     elif event.key == pygame.K_p:
         # start game on key press of p
         start_game(ai_settings, screen, ship, aliens, bullets, stats)
-    elif event.key == pygame.K_RIGHT:
+    elif event.key == pygame.K_DOWN:
         # Move the ship rect to the right.
-        ship.moving_right = True
-    elif event.key == pygame.K_LEFT:
+        ship.moving_down = True
+    elif event.key == pygame.K_UP:
         # Move the ship rect to the left.
-        ship.moving_left = True
+        ship.moving_up = True
     elif event.key == pygame.K_SPACE:
         fire_bullet(ai_settings, screen, ship, bullets)
 
@@ -109,9 +109,9 @@ def check_bullet_alien_collisions(ai_settings, screen, ship, aliens, bullets):
 def check_keyup_events(event, ship):
     """Respond to key releases."""
     if event.key == pygame.K_RIGHT:
-        ship.moving_right = False
+        ship.moving_down = False
     elif event.key == pygame.K_LEFT:
-        ship.moving_left = False
+        ship.moving_up = False
 
 
 def update_screen(ai_settings, screen, ship, aliens, bullets, stats, play_button, target):
@@ -133,18 +133,18 @@ def update_screen(ai_settings, screen, ship, aliens, bullets, stats, play_button
     pygame.display.flip()
 
 
-def get_number_aliens_x(ai_settings, alien_width):
+def get_number_aliens_x(ai_settings, alien_width, ship_width):
     """Determine the number of aliens that fit in a row."""
-    available_space_x = ai_settings.screen_width - (2 * alien_width)
+    available_space_x = (ai_settings.screen_width - ship_width) - (2 * alien_width)
     number_aliens_x = int(available_space_x / (2 * alien_width))
     return number_aliens_x
 
 
-def create_alien(ai_settings, screen, aliens, alien_number, row_number):
+def create_alien(ai_settings, screen, aliens, alien_number, row_number, ship_width):
     """Create an alien and add to group."""
     alien = Alien(ai_settings, screen)
     alien_width = alien.rect.width
-    alien.x = alien_width + 2 * alien_width * alien_number
+    alien.x = alien_width + 2 * alien_width * alien_number + ship_width
     alien.rect.x = alien.x
     alien.rect.y = alien.rect.height + 2 * alien.rect.height * row_number
     aliens.add(alien)
@@ -162,13 +162,14 @@ def create_fleet(ai_settings, screen, ship, aliens):
 
     # Create an alien and place it in the row.
     alien = Alien(ai_settings, screen)
-    number_aliens_x = get_number_aliens_x(ai_settings, alien.rect.width)
+    number_aliens_x = get_number_aliens_x(ai_settings, alien.rect.width, ship.rect.width)
     number_rows = get_number_rows(ai_settings, ship.rect.height, alien.rect.height)
+    ship_width = ship.rect.width
 
     # Create the fleet of aliens
     for row_number in range(number_rows):
         for alien_number in range(number_aliens_x):
-            create_alien(ai_settings, screen, aliens, alien_number, row_number)
+            create_alien(ai_settings, screen, aliens, alien_number, row_number, ship_width)
 
 
 def update_aliens(ai_settings, stats, screen, ship, aliens, bullets):
@@ -228,7 +229,7 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
 
         # Create new fleet and center ship
         create_fleet(ai_settings, screen, ship, aliens)
-        ship.center_ship()  # ???
+        # ship.center_ship()  # ???
 
         # Dramatic pause
         sleep(0.5)
