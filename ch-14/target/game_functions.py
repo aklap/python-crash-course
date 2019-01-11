@@ -213,6 +213,15 @@ def change_fleet_direction(ai_settings, aliens):
 
     ai_settings.fleet_direction *= -1
 
+def reload_aliens_bullets(ai_settings, stats, screen, ship, aliens, bullets):
+    """Reload aliens and bullets"""
+    # Empty the list of aliens and bullets
+    aliens.empty()
+    bullets.empty()
+
+    # Create new fleet and center ship
+    create_fleet(ai_settings, screen, ship, aliens)
+    # ship.center_ship()  # ???
 
 def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
     """Respond to ship being hit."""
@@ -224,13 +233,14 @@ def ship_hit(ai_settings, stats, screen, ship, aliens, bullets):
         pygame.mouse.set_visible(True)
         print('game over')
     else:
-        # Empty the list of aliens and bullets
-        aliens.empty()
-        bullets.empty()
+        reload_aliens_bullets(ai_settings, stats, screen, ship, aliens, bullets)
+        # # Empty the list of aliens and bullets
+        # aliens.empty()
+        # bullets.empty()
 
-        # Create new fleet and center ship
-        create_fleet(ai_settings, screen, ship, aliens)
-        # ship.center_ship()  # ???
+        # # Create new fleet and center ship
+        # create_fleet(ai_settings, screen, ship, aliens)
+        # # ship.center_ship()  # ???
 
         # Dramatic pause
         sleep(0.5)
