@@ -91,17 +91,18 @@ def check_bullet_target_collisions(ai_settings, screen, target, bullets, stats, 
 
     if pygame.sprite.spritecollideany(target, bullets):
         # Destroy existing bullets, create new fleet.
+        # TODO: increase speed of target, ship here
         bullets.empty()
         target_hit(ai_settings, stats, screen, bullets, ship, target, play_button)
         ship.center_ship()
 
 def target_hit(ai_settings, stats, screen, bullets, ship, target, play_button):
     stats.targets_left -= 1
+    ai_settings.increase_speed()
 
     if stats.targets_left < 1:
         stats.game_active = False
         pygame.mouse.set_visible(True)
-        play_button.prep_msg('GAME OVER!')
     else:
         bullets.empty()
         ship.center_ship()
@@ -118,11 +119,12 @@ def update_screen(ai_settings, screen, ship, bullets, stats, play_button, target
         bullet.draw_bullet()
     # Draw ship
     ship.blitme()
-    # Draw play button only if game hasn't started
-    if not stats.game_active:
-        play_button.draw_button()
     # Make the most recently drawn screen visible.
     pygame.display.flip()
+    # Draw play button only if game hasn't started
+    if not stats.game_active:
+        ai_settings.initialize_speed()
+        play_button.draw_button()
 
 def reload_bullets(ai_settings, stats, screen, ship, bullets):
     """Reload bullets."""

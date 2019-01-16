@@ -17,7 +17,7 @@ class Target(Sprite):
         self.rect.right = self.screen_rect.right
         self.y = float(self.rect.y)
         self.color = (0, 0, 0)
-        self.speed_factor = ai_settings.target_speed_factor
+        # self.speed_factor = ai_settings.target_speed_factor
         # Direction flag, up or down 1 or -1
         self.direction = 1
 
@@ -27,14 +27,12 @@ class Target(Sprite):
 
     def check_edges(self):
         """Check if a target has hit top or bottom of the screen, if so flip direction."""
-        if self.rect.top <= self.screen_rect.top:
-            return True
-        if self.rect.bottom >= self.screen_rect.bottom:
+        if self.rect.top <= self.screen_rect.top or self.rect.bottom >= self.screen_rect.bottom:
             return True
 
     def update(self):
         """Move target up and down the screen."""
-        self.y += self.speed_factor * self.direction
+        self.y += self.ai_settings.target_speed_factor * self.direction
         self.rect.y = self.y
 
     def to_top(self):
