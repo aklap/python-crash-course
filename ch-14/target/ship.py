@@ -26,9 +26,10 @@ class Ship():
             self.y += self.ai_settings.ship_speed_factor
             self.rect.y = self.y
 
-        if self.moving_up and self.rect.top >= 0:
-            self.y -= self.ai_settings.ship_speed_factor
-            self.rect.y = self.y
+        # NOTE: Have to do this so that ship doesn't move up and out of window
+        if self.moving_up and self.y - self.ai_settings.ship_speed_factor > 0:
+                self.y -= self.ai_settings.ship_speed_factor
+                self.rect.y = self.y
 
     def blitme(self):
         """Draw the ship at its current location."""
