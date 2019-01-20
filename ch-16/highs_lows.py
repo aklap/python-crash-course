@@ -4,7 +4,7 @@ from datetime import datetime
 from matplotlib import pyplot as plt
 
 
-filename = 'sitka_weather_2014.csv'
+filename = 'death_valley-2014.csv'
 
 with open(filename) as f:
     reader = csv.reader(f)  # Store this as CSV reader object
@@ -16,10 +16,15 @@ with open(filename) as f:
     highs, dates, lows = [], [], []
 
     for row in reader:
-        highs.append(int(row[1]))
-        dates.append(datetime.strptime(row[0], "%Y-%m-%d"))
-        lows.append(int(row[3]))
-    
+        try:
+            current_date = datetime.strptime(row[0], "%Y-%m-%d")
+            highs.append(int(row[1]))
+            dates.append(current_date)
+            lows.append(int(row[3]))
+        except ValueError:
+            print(current_date, 'missing data')
+
+
     # Plot data
     fig = plt.figure(dpi=128, figsize=(10,6))
     plt.plot(dates, highs, c='red', alpha=0.5)
@@ -28,7 +33,7 @@ with open(filename) as f:
 
     # Format plot:
     # Title
-    plt.title("Daily high temperatures, July 2014", fontsize=24)
+    plt.title("Daily high and low temperatures - 2014\nDeath Valley, CA", fontsize=20)
     # X axis label
     plt.xlabel("", fontsize=16)
     fig.autofmt_xdate()
