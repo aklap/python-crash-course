@@ -1,0 +1,17 @@
+{% block content %} 
+    <p>
+        <a href="{% url 'blogs:index' %}">Blog</a>
+    </p>
+
+    <h1>Blogs helps you read the most interesing blog from your blog writer.</h1>
+
+    <ul>
+        {% for blog in blogs %}
+            <li>
+                <a href="#">{{ blog.title }}</a>
+                <p>Published: {{ blog.formatted_date }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
+  
