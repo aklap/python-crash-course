@@ -1,0 +1,10 @@
+{% block content %}
+
+<p>{{ post.title }}</p>
+
+<p>Published: {{ post.formatted_date }}</p>
+
+<p>{{ post.text }}</p>
+
+<a href="{% url 'blogs:edit_blogpost' post.id %}">Edit this post</a>
+{% endblock content %}

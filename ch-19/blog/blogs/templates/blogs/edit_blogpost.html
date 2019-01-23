@@ -1,0 +1,11 @@
+{% block content %}
+
+<p>Edit entry:</p>
+
+<form action="{% url 'blogs:edit_blogpost' blogpost.id%}" method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button name="submit">Save changes</button>
+</form>
+
+{% endblock content %}
