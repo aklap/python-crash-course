@@ -1,9 +1,13 @@
-<p>
-  <a href="{% url 'blogs:index' %}">Blog</a> -
-</p>
+{% extends "blogs/base.html" %}
 
 {% block content %}
 <p>Blog helps you keep read posts for any Blog you're learning about.</p>
+
+{% if user.is_authenticated %}
+  <p>Hello, {{ user.username }}.</p>
+{% else %}
+  <a href="{% url 'users:login' %}">Log In</a>
+{% endif %}
 
 <p>Posts</p>
 <ul>

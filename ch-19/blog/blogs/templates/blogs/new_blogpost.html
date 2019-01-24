@@ -1,3 +1,5 @@
+{% extends "blogs/base.html" %}
+
 {% block content %}
   <p>Add a new post:</p>
   <form action="{% url 'blogs:new_blogpost' %}" method='post'>
