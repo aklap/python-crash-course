@@ -3,25 +3,24 @@
 {% block content %}
 <p>Blog helps you keep read posts for any Blog you're learning about.</p>
 
-{% if user.is_authenticated %}
-  <p>Hello, {{ user.username }}.</p>
-  <a href="{% url 'users:logout' %}">Log Out</a>
-  {% else %}
-  <a href="{% url 'users:login' %}">Log In</a> |
-  <a href="{% url 'users:register' %}">Sign Up</a>
-{% endif %}
-
-<p>Posts</p>
-<ul>
-  {% for post in posts %}
-    <li>
-      <a href="{% url 'blogs:blogpost' post.id %}">{{ post.title }}</a>
-      <p>Published {{ post.formatted_date }}</p>
-    </li>
-    {% empty %}
+  {% if user.is_authenticated %}
+    <p>Hello, {{ user.username }}.</p>
+    <a href="{% url 'users:logout' %}">Log Out</a>
+    <p>Posts</p>
+    <ul>
+      {% for post in posts %}
+      <li>
+        <a href="{% url 'blogs:blogpost' post.id %}">{{ post.title }}</a>
+        <p>Published {{ post.formatted_date }}</p>
+      </li>
+      {% empty %}
       <li>No Blogs have been added yet.</li>
-  {% endfor %}
-</ul>
+      {% endfor %}
+    </ul>
+    {% else %}
+      <a href="{% url 'users:login' %}">Log In</a> |
+      <a href="{% url 'users:register' %}">Sign Up</a>
+  {% endif %}
 
 <a href="{% url 'blogs:new_blogpost' %}">Add a new post</a>
 {% endblock content %}
