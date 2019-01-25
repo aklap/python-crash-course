@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'blogs',
     # Auth
     'users',
+    # Third Party Apps
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [

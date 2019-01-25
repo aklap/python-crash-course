@@ -9,7 +9,7 @@ from .forms import BlogPostForm
 # Create your views here.
 def index(request):
     """The home page for our Blog website showing all posts."""
-    posts = BlogPost.objects.filter(author=request.user).order_by('-date_added')
+    posts = BlogPost.objects.order_by('-date_added')
     context = {'posts': posts}
     return render(request, 'blogs/index.html', context)
 
@@ -70,4 +70,4 @@ def delete_blogpost(request, blogpost_id):
         raise Http404
 
     blogpost.delete()
-    return HttpResponseRedirect(reverse('blogs/blogpost.html'))
+    return HttpResponseRedirect(reverse('blogs:index'))

@@ -1,6 +1,61 @@
-<p>
-  <a href="{% url 'blogs:index' %}">Blog</a> -
-</p>
+{% load bootstrap4 %}
 
-{% block content %} {% endblock content %}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {% bootstrap_css %}
+  {% bootstrap_javascript jquery="True" %}
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-sticky-top navbar-light bg-light">
+    <a href="{% url 'blogs:index' %}" class="navbar-brand">Blog</a>
+    <!-- Mobile Button -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbarNavAltMarkup"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <!-- Dropdown Menu -->
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="{% url 'blogs:index' %}">Posts</a></li>
+      </ul>
+      <!-- NOTE: Bootstrap4 requires ml-auto instead of navbar-right class. -->
+      <ul class="nav navbar-nav ml-auto">
+        <!-- Display welcome message if user is logged in -->
+        {% if user.is_authenticated %}
+        <li class="nav-item">
+          <span class="nav-link">Hello, {{ user.username }}.</span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'users:logout' %}">Log out</a>
+        </li>
+        {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'users:login' %}">Log in</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'users:register' %}">Register</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div>
+    <!--/.nav-collapse-->
+  </nav>  
+
+  <main>
+    {% block header %}{% endblock header %}
+    
+    {% block content %}{% endblock content %}
+  </main>
+</body>
+</html>
+
+
+
 
