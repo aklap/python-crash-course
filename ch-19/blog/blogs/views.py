@@ -59,3 +59,15 @@ def edit_blogpost(request, blogpost_id):
 
     context = {'blogpost': blogpost, 'form': form}
     return render(request, 'blogs/edit_blogpost.html', context)
+
+
+@login_required
+def delete_blogpost(request, blogpost_id):
+    """Delete a post."""
+    blogpost = BlogPost.objects.get(id=blogpost_id)
+
+    if blogpost.author != request.user:
+        raise Http404
+
+    blogpost.delete()
+    return HttpResponseRedirect(reverse('blogs/blogpost.html'))

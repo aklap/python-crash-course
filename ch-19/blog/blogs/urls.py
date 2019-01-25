@@ -13,4 +13,6 @@ urlpatterns = [
     path('blogposts/<int:blogpost_id>/', views.blogpost, name="blogpost"),
     # Edit a single post
     path('edit_blogpost/<int:blogpost_id>/', views.edit_blogpost,name="edit_blogpost"),
+    # Delete a post
+    path('delete_blogpost/<int:blogpost_id>/', views.delete_blogpost, name="delete_blogpost"),
 ]
