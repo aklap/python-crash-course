@@ -1,13 +1,18 @@
 {% extends "blogs/base.html" %}
 
+{% block header %}
+  <h2>
+    {{ post.title }}
+  </h2>
+  <small>Published: {{ post.formatted_date }}</small>
+{% endblock header %}
+
 {% block content %}
-
-  <p>{{ post.title }}</p>
-
-  <p>Published: {{ post.formatted_date }}</p>
-
   <p>{{ post.text }}</p>
-
-  <a href="{% url 'blogs:edit_blogpost' post.id %}">Edit this post</a>
-  <a href="{% url 'blogs:delete_blogpost' post.id %}">Delete this post</a>
+  <p>
+    <a href="{% url 'blogs:edit_blogpost' post.id %}">Edit this post</a>
+  </p>
+  <p>
+    <a href="{% url 'blogs:delete_blogpost' post.id %}">Delete this post</a>
+  </p>
 {% endblock content %}
