@@ -1,0 +1,13 @@
+# Stars
+Another side side project from Python Crash Course. Scatter the stars across the pygame window. Turns out 'random' isn't so random, hence the column of stars. However, met the specs :)
+
+## Uses:
+
+* pygame
+* Python 3.7.1
+
+## Specs (from book):
+
+* Create rows of stars
+* Fill the window
+* Try to randomize placement of each star 
