@@ -8,22 +8,20 @@ class Die:
 
     def roll_die(self):
         print(randint(1, self.sides))
-# NOTE: 6 sided die
+
+
+# Die exercises
+
+# 6 sided die
 # dice = Die()
 
-# NOTE: 10-sided die
+# 10-sided die
 # dice = Die(10)
-# NOTE: 20-sided die
-dice = Die(20)
 
+# 20-sided die
+# dice = Die(20)
 
-dice.roll_die()
-dice.roll_die()
-dice.roll_die()
-dice.roll_die()
-dice.roll_die()
-dice.roll_die()
-dice.roll_die()
-dice.roll_die()
-dice.roll_die()
-dice.roll_die()
+# Roll die x times
+# for i in range(dice.sides + 1):
+#     print('Rolled: ')
+#     dice.roll_die()

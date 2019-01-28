@@ -27,7 +27,7 @@ class Settings():
 
     def increase_speed(self):
         """Increase the speed of the target and ship as game goes on."""
-        self.ship_speed_factor *= self.speed_scale 
+        self.ship_speed_factor *= self.speed_scale
         self.bullet_speed_factor *= self.speed_scale
-        self.target_speed_factor *= self.speed_scale 
-        
+        self.target_speed_factor *= self.speed_scale
+

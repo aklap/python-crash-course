@@ -2,28 +2,28 @@
 
 # 10-1
 
-# with open('notes.txt') as file_object:
+with open('notes.txt') as file_object:
 
-#     print('\nRead in the entire file first:\n')
+    print('\nRead in the entire file first:\n')
 
-#     contents = file_object.read()
-#     print(contents)
+    contents = file_object.read()
+    print(contents)
 
-# with open('notes.txt') as file_object:
+with open('notes.txt') as file_object:
 
-#     print("\nRead a file in line by line:\n")
+    print("\nRead a file in line by line:\n")
 
-#     for line in file_object:
-#         print(line)
+    for line in file_object:
+        print(line)
 
-# with open('notes.txt') as file_object:
+with open('notes.txt') as file_object:
 
-#     lines = file_object.readlines()
+    lines = file_object.readlines()
 
-# print('\nPrint lines stored in a list:\n')
+print('\nPrint lines stored in a list:\n')
 
-# for line in lines:
-#     print(line)
+for line in lines:
+    print(line)
 
 # 10-2
 
@@ -112,30 +112,29 @@
 #     pass
 
 # 10-10
-import os
+# import os
 
-books = os.listdir('books')
+# books = os.listdir('books')
 
-for book in books:
-    with open('books/' + book) as f:
-        words = f.read()
-        count = words.lower().count('the')
+# for book in books:
+#     with open('books/' + book) as f:
+#         words = f.read()
+#         count = words.lower().count('the')
 
-    print(book + ' has ' + str(count) + ' occurences of the word "the".\n')
+#     print(book + ' has ' + str(count) + ' occurences of the word "the".\n')
 
 # 10-11, 10-12
-import json
+# import json
 
-filename = 'favorite_num.txt'
+# filename = 'favorite_num.txt'
 
-try:
-    with open(filename) as f:
+# try:
+#     with open(filename) as f:
+#         favorite_num = json.load(f)
+# except FileNotFoundError:
+#     favorite_num = input('What\'s your favorite number?\n')
 
-        favorite_num = json.load(f)
-except FileNotFoundError:
-    favorite_num = input('What\'s your favorite number?\n')
-
-    with open(filename, 'w') as f:
-        json.dump(favorite_num, f)
-else:
-    print('I know your favorite number! It\'s ' + favorite_num + '.')
+#     with open(filename, 'w') as f:
+#         json.dump(favorite_num, f)
+# else:
+#     print('I know your favorite number! It\'s ' + favorite_num + '.')

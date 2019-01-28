@@ -9,7 +9,11 @@ class User:
 
     def describe_user(self):
         """Print each attribute of the User instance."""
-        print('User summary:\n' + self.name.title() + ' ' + str(self.age) + ' ' + self.location.title())
+        msg = 'User summary:\n'
+        msg += self.name.title() + ' '
+        msg += str(self.age) + ' '
+        msg += self.location.title()
+        print(msg)
 
     def greet_user(self):
         """Greet user."""

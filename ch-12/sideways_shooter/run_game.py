@@ -1,11 +1,12 @@
-import sys
 import pygame
 from pygame.sprite import Group
 from settings import Settings
 from ship import Ship
 import game_functions as gf
 
+
 def run_game():
+    """Run game loop."""
     pygame.init()  # Initialize game
     # Settings
     ai_settings = Settings()
@@ -28,6 +29,7 @@ def run_game():
         gf.update_bullets(bullets, ai_settings)
         # Draw objects in window
         gf.update_screen(ai_settings, screen, ship, bullets)
+
 
 # Run game loop
 run_game()

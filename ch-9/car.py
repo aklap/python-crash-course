@@ -9,11 +9,12 @@ class Car():
         self.model = model
         self.year = year
 
+
 class ElectricCar(Car):
     """Child class of parent class Car."""
     def __init__(self, make, model, year):
         """Initialize instance of class ElectricCar."""
-        super().__init__(make, model, year)
+        super().__init__(make, model, year)  # Pass args back up to parent init
 
         self.battery = Battery()
 

@@ -1,1 +1,1 @@
-FILENAME = 'username.json'
+FILENAME = './username.json'

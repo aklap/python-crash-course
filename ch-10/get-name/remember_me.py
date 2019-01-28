@@ -1,11 +1,11 @@
 import json
-import constant
+from constant import FILENAME
 
 
 def get_stored_username():
     """Get the username if it is available."""
     try:
-        with open(constant.FILENAME) as f:
+        with open(FILENAME) as f:
             username = json.load(f)
     except FileNotFoundError:
         return None
@@ -17,7 +17,7 @@ def get_new_username():
     """Get name from user."""
     username = input('What is your name?\n')
 
-    with open(constant.FILENAME, 'w') as f:
+    with open(FILENAME, 'w') as f:
         json.dump(username, f)
 
     return username
@@ -40,4 +40,6 @@ def greet_user():
         username = get_new_username()
         return 'We\'ll remember you when you come back ' + username + '!'
 
+
+# Exercise
 print(greet_user())

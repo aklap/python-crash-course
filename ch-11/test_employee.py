@@ -1,6 +1,7 @@
 import unittest
 from employee import Employee
 
+
 class TestEmployee(unittest.TestCase):
     def setUp(self):
         """Create an employee and set up attributes."""
@@ -15,5 +16,6 @@ class TestEmployee(unittest.TestCase):
         """Test that we can give a custom raise to an employee."""
         self.employee.give_raise(10000)
         self.assertEqual(self.employee.annual_salary, 85000)
+
 
 unittest.main()

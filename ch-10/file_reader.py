@@ -1,14 +1,16 @@
-filename = '../../python-crash-course_resources/pcc/chapter_10/pi_million_digits.txt'
+filename = './pi_digits.txt'
 
 with open(filename) as file_object:
+    # Exercise 1
     # contents = file_object.read()
     # print(contents.rstrip())
 
+    # Exercise 2
     # for line in file_object:
     #     print(line.rstrip())
 
+    # Exercise 3
     lines = file_object.readlines()
-
     pi_string = ''
 
 for line in lines:

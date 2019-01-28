@@ -25,4 +25,4 @@ def run_game():
                 screen.blit(text_surface, (screen_rect.centerx, screen_rect.centery))  # Draw text on window (text surface on window surface)
                 pygame.display.flip()  # Draw the latest window
 
-run_game()
+# run_game()
