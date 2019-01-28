@@ -1,5 +1,6 @@
 # Stars
 ![Demo image of stars game](https://github.com/aklap/python-crash-course/blob/master/ch-13/stars/stars.png)
+
 Another side side project from Python Crash Course. Scatter the stars across the pygame window. Turns out 'random' isn't so random, hence the column of stars. However, met the specs :)
 
 ## Uses:
