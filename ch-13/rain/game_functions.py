@@ -1,4 +1,5 @@
 import pygame
+import sys
 from drop import Drop
 from random import randint
 
