@@ -1,36 +1,27 @@
 # Alien Invasion Project
 
-Description:
+![Demo of alternative alien invasion game](https://github.com/aklap/python-crash-course/blob/master/ch-14/target/demo.gif)
 
-A Python game where the user controls a spaceship via arrow keys.
+A side project from Python Crash Course.
 
-User can shoot space mace using the spacebar.
+The ship moves vertically on one side of the screen and shoots at a moving target on the other side.
 
-Game starts with fleet of aliens moving across and down the screen. 
+## Specs (from book):
 
-Player will shoot space mace and drives aliens away.
+* Start game with 'P' key.
+* Quit game with 'Q' key.
+* Move up with up arrow key.
+* Move down with down arrow key.
 
-If player successfully shoots the aliens, a new, faster fleet will
-appear.
+* A ship has can only shoot 3 bullets at a time.
+* Hit the target 3 times and you win the game.
 
-If an alien hits a the player or the player reaches the bottom of the
-screen, the player loses a ship.
+Note: The first round is rather slow but speeds up at the end.
 
-If the player loses 3 ships, the game ends and the user loses.
+## Uses:
 
-MVP:
-
-The a ship that can move left and right.
-
-The ship should fire space mace when player presses spacebar.
-
-## Pt. I
-
-- create empty Pygame window
-- draw game elements: ship and aliens
-- respond to user input
-- set background color
-- load ship image
+* pygame
+* Python 3.7.1
 
 
 
