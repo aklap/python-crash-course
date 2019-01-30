@@ -1,15 +1,15 @@
 # Python Crash Course
 
-This repo contains most of the exercises from [Eric Matthes' Python Crash Course](https://nostarch.com/pythoncrashcourse) all done in Python 3.7.1. (I skipped the data viz chapter and most of the Pygal stuff.)
+This repo contains most of the exercises from [Eric Matthes' Python Crash Course](https://nostarch.com/pythoncrashcourse) all done in Python 3.7.1. (Sections I skipped include the data visualization chapter and most of the Pygal projects and some of the outdated API projects.)
 
-For some of the larger projects, esp. the side projects where you're left without instruction I included demo images and gifs. (Hopefully this helps anyone stuck on certain exercises in the book.)
+For some of the larger projects, esp. the side projects where there are specs but no instructions, I also included a readme, demo images, and gifs. (Hopefully this helps anyone stuck on certain exercises in the book!)
 
 ## Notes
-Most of the latter chapters' exercises contain outdated instructions for Django apps, particularly Pygal exercises and APIs, some of the imported django modules and using Whitenoise. 
+The latter chapters' exercises contain outdated instructions/resources for Django apps, particularly the Pygal exercises and APIs (fyi: weatherunderground.com doesn't seem to provide historical data in a CSV format, anymore), as well as some of the imported Django modules and Whitenoise.
 
-For some of the projets the specs wanted more of a CRU rather than a CRUD app. I added the ability to delete objects in the database via the app, anyway.
+For some of the projects the specs wanted more of a CRU rather than a CRUD app. I added the ability to delete objects in the database via the app, anyway.
 
-Learning Log and the Blog projects have their own repos. 
+Alien Invasion game, Learning Log and the Blog projects will have their own repos.
 
 
 * Ch. 1-2
@@ -26,6 +26,7 @@ Learning Log and the Blog projects have their own repos.
   - Stars generator
 * [Ch. 14](https://github.com/aklap/python-crash-course/tree/master/ch-14/target)
   - Target game
+  - Completed Alien Invasion game
 * Ch. 15
   - Skipped, data viz
 * [Ch. 16](https://github.com/aklap/python-crash-course/tree/master/ch-16)
@@ -33,10 +34,10 @@ Learning Log and the Blog projects have their own repos.
 * [Ch. 17](https://github.com/aklap/python-crash-course/tree/master/ch-17)
   - Partially done, just working with APIs
 * [Ch. 18](https://github.com/aklap/python-crash-course/tree/master/ch-18)
-  - Meal Planner, django app
-  - Pizzeria, django app
+  - Meal Planner, Django app
+  - Pizzeria, Django app
 * [Ch.19-20](https://github.com/aklap/python-crash-course/tree/master/ch-19/blog)
-  - Blog, django app 
-  - Learning Log in separate repo
+  - Blog, Django app
+  - Learning Log completed (in separate repo)
 
 
