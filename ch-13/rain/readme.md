@@ -1,8 +1,14 @@
-# Raindrops
+# Raindrops Generator
 
 ![Demo of Rain app](https://github.com/aklap/python-crash-course/blob/master/ch-13/rain/demo.gif)
 
 A side project for Ch-13 to simulate falling rain drops. Slightly tweaked from the instructions in the book.
+
+## To Run:
+
+Cd into project directory and run `pip3 install pygame` to install pygame.
+
+Press 'Q' to quit.
 
 ## Uses:
 
