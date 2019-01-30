@@ -6,12 +6,10 @@ A side project in Python Crash Course, Ch. 13.
 
 Balls fall from random positions from the top of screen, the user is the 'catcher.' 
 
-## To run:
+## Uses:
 
-Install pygame with `pip3 install pygame`.
-Run `python3 run_game.py` to start.
-Move left and right only, with ← (left) and → (right) arrow keys.
-Game only ends if you fail to catch 3 balls.
+* pygame
+* Python 3
 
 ## Specs from the book:
 
@@ -19,5 +17,17 @@ Game only ends if you fail to catch 3 balls.
 * You can move left or right using the arrow keys on your keyboard.
 * Balls fall one at a time.
 * Position of the ball falling changes once it is caught or hits the ground.
+
+## To run:
+
+Install pygame with `pip3 install pygame`.
+
+Run `python3 run_game.py` to start.
+
+Move left and right only, with ← (left) and → (right) arrow keys.
+
+Quit with 'P' key.
+
+**Game only ends if you fail to catch 3 balls.
 
 Icon is from Freepik.
